@@ -1,0 +1,18 @@
+.mxb--galaxy {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.mxb--world {
+  flex: 1;
+}
+
+.mxb--landing-img-wrapper {
+  width: min(500px, 100%);
+}
+
+.mxb--landing-img {
+  object-fit: contain;
+  width: 100%;
+}
