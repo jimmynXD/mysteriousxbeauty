@@ -94,7 +94,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         >
           <Container css={{ flex: 1 }}>
             <Spacer y={3} />
-            <Row justify="center">
+            <Row justify="center" css={{ zIndex: 1 }}>
               <MXBLink href="/">
                 <Card.Image
                   objectFit="contain"
@@ -131,6 +131,7 @@ function MyApp({ Component, pageProps }: AppProps) {
               <Text
                 css={{
                   letterSpacing: "$wide",
+                  zIndex: 1,
                 }}
               >
                 Made in NYC

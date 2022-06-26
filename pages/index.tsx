@@ -38,38 +38,29 @@ const Home: NextPage = () => {
           content="Asian American NYC artist bringing awareness to Southeast Asian culture."
         />
       </Head>
-      <Container
-        css={{
-          backgroundColor: "transparent",
-          "@xsMax": {
-            "&::before": {
-              content: "",
-              position: "fixed",
-              height: "100%",
-              width: "100%",
-              background: "url(ttan-majestic.jpg)",
-              backgroundPosition: "center left",
-              backgroundAttachment: "fixed",
-              backgroundRepeat: "no-repeat",
-              backgroundSize: "70vh",
-            },
-          },
-        }}
-      >
-        <Row
+      <Container css={{ position: "relative" }}>
+        <Card.Body
           css={{
             "@xsMax": {
-              display: "none",
+              position: "fixed",
+              top: "10%",
+              left: "5%",
+              width: "150%",
             },
           }}
         >
           <Card.Image
             objectFit="contain"
             autoResize
-            width={"500px"}
             src="ttan-majestic.jpg"
+            css={{
+              clip: " rect(0px,60px,200px,0px)",
+              "@xs": {
+                maxWidth: "500px",
+              },
+            }}
           />
-        </Row>
+        </Card.Body>
         <FirstRow justify="center">
           <Button
             ripple
