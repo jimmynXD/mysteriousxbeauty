@@ -1,7 +1,6 @@
 import { Link, styled } from "@nextui-org/react";
 
 export const MXBLink = styled(Link, {
-  transition: "all 200ms ease-in-out",
   "&.active": {
     color: "$linkActive",
     "&::after": {
@@ -11,5 +10,8 @@ export const MXBLink = styled(Link, {
   "&:hover": {
     opacity: 1,
     color: "$linkHover",
+    "&::after": {
+      background: "$linkHover",
+    },
   },
 });

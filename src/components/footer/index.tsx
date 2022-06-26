@@ -9,7 +9,11 @@ import {
   faTumblr,
 } from "@fortawesome/free-brands-svg-icons";
 
-import { faEnvelope, faCopyright } from "@fortawesome/free-regular-svg-icons";
+import {
+  faEnvelope,
+  faCopyright,
+  faSquare,
+} from "@fortawesome/free-regular-svg-icons";
 import { MXBLink } from "..";
 
 export const MXBFooter = () => {
@@ -44,6 +48,11 @@ export const MXBFooter = () => {
       href: "https://www.linkedin.com/in/mysteriousxbeauty/",
     },
     {
+      icon: faSquare,
+      href: "https://opensea.io/mysteriousxbeauty",
+      custom: "far fa-hexagon-vertical-nft",
+    },
+    {
       icon: faEnvelope,
       href: "mailto:contact@mysteriousxbeauty.com",
     },
@@ -53,16 +62,33 @@ export const MXBFooter = () => {
       <Row justify="center">
         <Text
           small
-          css={{ textTransform: "uppercase", letterSpacing: "$wider" }}
+          css={{
+            textTransform: "uppercase",
+            letterSpacing: "$wider",
+            "@xsMax": {
+              display: "none",
+            },
+          }}
         >
           Follow
         </Text>
       </Row>
       <Spacer y={1} />
-      <Row justify="center">
+      <Row
+        justify="center"
+        css={{
+          "@xsMax": {
+            display: "none",
+          },
+        }}
+      >
         {SOCIAL_DATA.map((social, index) => (
           <LogoLink href={social.href} key={index} target="_blank">
-            <Fa icon={social.icon} />
+            {social.custom ? (
+              <i className={social.custom}></i>
+            ) : (
+              <Fa icon={social.icon} />
+            )}
           </LogoLink>
         ))}
       </Row>

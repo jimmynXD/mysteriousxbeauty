@@ -1,37 +1,90 @@
-import type { NextPage } from "next";
 import React, { FC } from "react";
 import Head from "next/head";
-import { Spacer, Grid, Text, Card } from "@nextui-org/react";
-import { postFilePaths, POSTS_PATH } from "../../scripts/mdx";
+import { Spacer, Grid, Text, Card, styled } from "@nextui-org/react";
+import { docsFilePaths, DOCS_PATH } from "../../scripts/mdx";
 import fs from "fs";
 import matter from "gray-matter";
 import path from "path";
+import { motion } from "framer-motion";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
-export interface PP {
-  posts: any[];
+export type DataProps = {
+  title?: string;
+  description?: string;
+};
+
+export type MoreProps = {
+  content?: string;
+  docsPath: string;
+  data: DataProps;
+};
+
+export interface DocsProps {
+  docs: MoreProps[];
 }
 
-export default function AboutMe({ posts }: PP) {
-  console.log(posts);
+export type MotionProps = {
+  children: React.ReactElement<any, any>;
+};
+
+const ShiftAnimation: FC<MotionProps> = ({ children }) => {
+  if (!useMediaQuery("(max-width:600px)")) {
+    return children;
+  }
+
+  return (
+    <motion.div
+      initial={{ y: 50, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{
+        duration: 1.75,
+        ease: "easeOut",
+      }}
+    >
+      {children}
+    </motion.div>
+  );
+};
+
+export default function AboutMe({ docs }: DocsProps) {
+  // Pulling about.mdx data
+  const dataSet = [...docs]
+    .filter((u) => u.docsPath.includes("about"))
+    .map((item) => {
+      return {
+        title: item.data.title,
+        description: item.data.description,
+        content: item.content,
+      };
+    });
+
+  const aboutData = Object.assign({}, dataSet[0]);
+
+  const AboutContent = styled(Text, {
+    fontWeight: "$normal",
+    letterSpacing: "$normal",
+    lineHeight: "$md",
+    "@xsMax": {
+      textAlign: "left",
+    },
+  });
 
   return (
     <>
       <Head>
-        <title>About | Mysterious X Beauty</title>
-        <meta
-          name="description"
-          content="Asian American NYC artist bringing awareness to Southeast Asian culture."
-        />
+        <title>About | MysteriousXBeauty</title>
       </Head>
-      <Spacer y={2} />
+      <Spacer y={1} />
       <Grid.Container gap={1}>
-        <Grid xs={12} sm={3}>
-          <Card.Image
-            objectFit="contain"
-            autoResize
-            width={"300px"}
-            src="ttan-0622622.png"
-          />
+        <Grid xs={12} sm={3} justify="center">
+          <ShiftAnimation>
+            <Card.Image
+              objectFit="contain"
+              autoResize
+              width={"300px"}
+              src="ttan-0622622.png"
+            />
+          </ShiftAnimation>
         </Grid>
         <Grid xs sm>
           <Card.Body
@@ -50,29 +103,13 @@ export default function AboutMe({ posts }: PP) {
                 fontWeight: "500",
               }}
             >
-              {posts[0].data.title}
+              {aboutData.title}
             </Text>
-            <Text
-              css={{
-                fontWeight: "$normal",
-                letterSpacing: "$normal",
-                lineHeight: "$md",
-              }}
-            >
-              {posts[0].data.description}
-            </Text>
-            {posts[0].content.length > 0 && (
+            <AboutContent>{aboutData.description}</AboutContent>
+            {aboutData.content && aboutData.content.length > 0 && (
               <>
                 <Spacer y={1} />
-                <Text
-                  css={{
-                    fontWeight: "$normal",
-                    letterSpacing: "$normal",
-                    lineHeight: "$md",
-                  }}
-                >
-                  {posts[0].content}
-                </Text>
+                <AboutContent>{aboutData.content}</AboutContent>
               </>
             )}
           </Card.Body>
@@ -83,16 +120,16 @@ export default function AboutMe({ posts }: PP) {
 }
 
 export function getStaticProps() {
-  const posts = postFilePaths.map((filePath) => {
-    const source = fs.readFileSync(path.join(POSTS_PATH, filePath));
+  const docs = docsFilePaths.map((docsPath) => {
+    const source = fs.readFileSync(path.join(DOCS_PATH, docsPath));
     const { content, data } = matter(source);
 
     return {
       content,
       data,
-      filePath,
+      docsPath,
     };
   });
 
-  return { props: { posts } };
+  return { props: { docs } };
 }

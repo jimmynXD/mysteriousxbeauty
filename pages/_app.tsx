@@ -1,4 +1,5 @@
 import "../styles/globals.css";
+import "../styles/fontawesome.css";
 import type { AppProps } from "next/app";
 import Head from "next/head";
 import {
@@ -7,27 +8,33 @@ import {
   Row,
   Spacer,
   Container,
-  Image,
-  Link,
+  Text,
   styled,
+  Card,
 } from "@nextui-org/react";
 import { MXBFooter } from "../src/components/footer";
 import { useRouter } from "next/router";
 import clsx from "clsx";
 import { MXBLink } from "../src/components";
-
+// https://github.com/nextui-org/nextui/blob/a488bed39892a49fac5f7dc8e65aa6fa7fcb9904/packages/react/src/theme/common.ts
 const mxbTheme = createTheme({
-  type: "light", // it could be "light" or "dark"
+  type: "light",
   theme: {
     colors: {
       primary: "$black",
-      link: "rgb(88, 88, 88)",
-      linkHover: "rgba(27, 151, 205, 0.7)",
-      linkActive: "rgba(27, 151, 205, 1)",
+      link: "$gray800",
+      //   linkHover: "rgba(27, 151, 205, 0.7)",
+      linkHover: "$blue400",
+      //   linkActive: "rgba(27, 151, 205, 1)",
+      linkActive: "$blue500",
     },
     fonts: {
       sans: "Raleway",
       bant: "bantayog",
+    },
+    transitions: {
+      default: "all 200ms ease-in-out",
+      link: "$default",
     },
   },
 });
@@ -88,12 +95,23 @@ function MyApp({ Component, pageProps }: AppProps) {
           <Container css={{ flex: 1 }}>
             <Spacer y={3} />
             <Row justify="center">
-              <Link href="/">
-                <Image objectFit="contain" autoResize src="mxb-logo-4201.png" />
-              </Link>
+              <MXBLink href="/">
+                <Card.Image
+                  objectFit="contain"
+                  autoResize
+                  src="mxb-logo-4201.png"
+                />
+              </MXBLink>
             </Row>
             <Spacer y={1} />
-            <Row justify="center">
+            <Row
+              justify="center"
+              css={{
+                "@xsMax": {
+                  display: "none",
+                },
+              }}
+            >
               <MXBNavItem
                 href="about"
                 className={clsx({ active: router.pathname === "/about" })}
@@ -101,6 +119,24 @@ function MyApp({ Component, pageProps }: AppProps) {
                 about
               </MXBNavItem>
             </Row>
+            <Row
+              justify="center"
+              css={{
+                "@xs": {
+                  display: "none",
+                  letterSpacing: "$widest",
+                },
+              }}
+            >
+              <Text
+                css={{
+                  letterSpacing: "$wide",
+                }}
+              >
+                Made in NYC
+              </Text>
+            </Row>
+
             <Component {...pageProps} />
           </Container>
           <Spacer y={1} />
