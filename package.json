@@ -8,7 +8,7 @@
     "build": "next build",
     "build:ssg": "next build && next export",
     "start": "next start",
-    "lint": "pnpm lint --ext .js,.jsx,.ts,.tsx .",
+    "lint": "pnpm exec eslint --ext .js,.jsx,.ts,.tsx .",
     "lint:fix": "pnpm run lint --fix"
   },
   "dependencies": {

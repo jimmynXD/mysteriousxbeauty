@@ -1,12 +1,13 @@
-import React, { FC } from "react";
-import Head from "next/head";
-import { Spacer, Grid, Text, Card, styled } from "@nextui-org/react";
-import { docsFilePaths, DOCS_PATH } from "../../scripts/mdx";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import { Card, Grid, Spacer, styled, Text } from "@nextui-org/react";
+import { motion } from "framer-motion";
 import fs from "fs";
 import matter from "gray-matter";
+import Head from "next/head";
 import path from "path";
-import { motion } from "framer-motion";
-import useMediaQuery from "@mui/material/useMediaQuery";
+import React, { FC } from "react";
+
+import { DOCS_PATH, docsFilePaths } from "../../scripts/mdx";
 
 export type DataProps = {
   title?: string;

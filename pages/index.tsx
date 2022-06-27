@@ -1,13 +1,13 @@
-import type { NextPage } from "next";
-import Head from "next/head";
 import {
+  Button,
+  Card,
+  Container,
   Row,
   Spacer,
-  Card,
-  Button,
   styled,
-  Container,
 } from "@nextui-org/react";
+import type { NextPage } from "next";
+import Head from "next/head";
 import { useRouter } from "next/router";
 
 const Home: NextPage = () => {
