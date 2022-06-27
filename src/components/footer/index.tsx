@@ -95,7 +95,13 @@ export const MXBFooter = () => {
       <Row justify="center" css={{ paddingTop: "1rem" }}>
         <Text
           small
-          css={{ textTransform: "uppercase", letterSpacing: "$wider" }}
+          css={{
+            textTransform: "uppercase",
+            letterSpacing: "$wider",
+            "@xsMax": {
+              textAlign: "center",
+            },
+          }}
         >
           All Designs Copyright <Fa icon={faCopyright} /> mysteriousxbeauty
         </Text>
