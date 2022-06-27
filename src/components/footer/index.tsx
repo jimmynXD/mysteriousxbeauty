@@ -1,19 +1,19 @@
-import { Row, Spacer, Text, styled } from "@nextui-org/react";
-import { FontAwesomeIcon as Fa } from "@fortawesome/react-fontawesome";
 import {
-  faInstagram,
-  faFacebook,
-  faTwitter,
   faBehance,
+  faFacebook,
+  faInstagram,
   faLinkedinIn,
   faTumblr,
+  faTwitter,
 } from "@fortawesome/free-brands-svg-icons";
-
 import {
-  faEnvelope,
   faCopyright,
+  faEnvelope,
   faSquare,
 } from "@fortawesome/free-regular-svg-icons";
+import { FontAwesomeIcon as Fa } from "@fortawesome/react-fontawesome";
+import { Row, Spacer, styled, Text } from "@nextui-org/react";
+
 import { MXBLink } from "..";
 
 export const MXBFooter = () => {

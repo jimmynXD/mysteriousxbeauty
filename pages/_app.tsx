@@ -1,21 +1,23 @@
 import "../styles/globals.css";
 import "../styles/fontawesome.css";
-import type { AppProps } from "next/app";
-import Head from "next/head";
+
 import {
+  Card,
+  Container,
   createTheme,
   NextUIProvider,
   Row,
   Spacer,
-  Container,
-  Text,
   styled,
-  Card,
+  Text,
 } from "@nextui-org/react";
-import { MXBFooter } from "../src/components/footer";
-import { useRouter } from "next/router";
 import clsx from "clsx";
+import type { AppProps } from "next/app";
+import Head from "next/head";
+import { useRouter } from "next/router";
+
 import { MXBLink } from "../src/components";
+import { MXBFooter } from "../src/components/footer";
 // https://github.com/nextui-org/nextui/blob/a488bed39892a49fac5f7dc8e65aa6fa7fcb9904/packages/react/src/theme/common.ts
 const mxbTheme = createTheme({
   type: "light",
